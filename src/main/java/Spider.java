@@ -10,6 +10,7 @@ public class Spider {
 
     public static String path = "http://www.yada.com.cn/";    //雅达公司官网
     public static int num = -1, sum = 0;
+    public static final String WORKSPACE = "C:/Spider/";
     /**
      * 定义四个文件类（链接存储，图片储存，文件存储，错误链接存储）
      */
@@ -165,10 +166,16 @@ public class Spider {
 
 
     public static void main(String[] args) {
-        aLinkFile = new File("D:/Spider/ALinks.txt");
-        imgLinkFile = new File("D:/Spider/ImgLinks.txt");
-        docLinkFile = new File("D:/Spider/DocLinks.txt");
-        errorLinkFile = new File("D:/Spider/ErrorLinks.txt");
+//        判断文件夹是否存在，不存在则创建
+        File directory = new File(WORKSPACE);
+        if (!directory.exists() && !directory.isDirectory()) {
+            directory.mkdir();
+        }
+//        创建四个存储文件
+        aLinkFile = new File(WORKSPACE + "/ALinks.txt");
+        imgLinkFile = new File(WORKSPACE + "/ImgLinks.txt");
+        docLinkFile = new File(WORKSPACE + "/DocLinks.txt");
+        errorLinkFile = new File(WORKSPACE + "/ErrorLinks.txt");
         //用数组存储四个文件对象，方便进行相同操作
         File[] files = new File[]{aLinkFile, imgLinkFile, docLinkFile, errorLinkFile};
         try {
